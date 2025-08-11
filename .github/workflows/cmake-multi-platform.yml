@@ -48,11 +48,11 @@ jobs:
         sudo apt-get install -y libgtest-dev
         cd /usr/src/gtest
         sudo cmake .
-        sudo make ###
-        cd /usr/src/gtest
-        ls -l
-        sudo cp ./lib/libgtest.a /usr/lib
-        sudo cp ./lib/libgtest_main.a /usr/lib
+        sudo make
+        #cd /usr/src/gtest
+        #ls -l
+        sudo cp libgtest.a /usr/lib #./lib/libgtest.a /usr/lib
+        sudo cp libgtest_main.a /usr/lib #./lib/libgtest_main.a /usr/lib
 
 
     - name: Set reusable strings
@@ -64,12 +64,14 @@ jobs:
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory.
       run: >
-        cmake -B ${{ steps.strings.outputs.build-output-dir }}
-        -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
-        -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
-        -DCMAKE_TOOLCHAIN_FILE=${{github.workspace}}${{ matrix.os == 'windows-latest' && '/vcpkg/scripts/buildsystems/vcpkg.cmake' || '' }}
-        -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+        cmake -B ${{ steps.strings.outputs.build-output-dir }} \
+        -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }} \
+        -DCMAKE_C_COMPILER=${{ matrix.c_compiler }} \
+        -DCMAKE_TOOLCHAIN_FILE=${{github.workspace}}${{ matrix.os == 'windows-latest' && '/vcpkg/scripts/buildsystems/vcpkg.cmake' || '' }} \
+        -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
         -S ${{ github.workspace }}
+
+      # -DCMAKE_TOOLCHAIN_FILE=${{ matrix.os == 'windows-latest' && github.workspace + '/vcpkg/scripts/buildsystems/vcpkg.cmake' || '' }} \
 
     - name: Build
       # Build program with the given configuration.
