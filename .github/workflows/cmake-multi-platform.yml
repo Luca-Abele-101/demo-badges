@@ -47,7 +47,9 @@ jobs:
         sudo apt-get install -y libgtest-dev
         cd /usr/src/gtest
         sudo cmake .
-        sudo make
+        sudo make ###
+        cd /usr/src/gtest
+        ls -l
         sudo cp libgtest.a /usr/lib
         sudo cp libgtest_main.a /usr/lib
 
