@@ -48,7 +48,7 @@ jobs:
         cd /usr/src/gtest && \
         sudo cmake . && \
         sudo make && \
-        sudo cp libg* /usr/lib
+        sudo cp libgtest*.a /usr/lib
 
 
     - name: Set reusable strings
