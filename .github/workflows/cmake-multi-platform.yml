@@ -33,15 +33,26 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Set up vcpkg
-      run: git clone https://github.com/Microsoft/vcpkg.git
-    - name: Bootstrap vcpkg
-      run: ./vcpkg/bootstrap-vcpkg.bat
-    - name: Install GTest
-      run: ./vcpkg/vcpkg install gtest
+    
+    - name: Install GTest for Windows build
+      if: matrix.os == 'windows-latest'
+      run: |
+        git clone https://github.com/Microsoft/vcpkg.git
+        ./vcpkg/bootstrap-vcpkg.bat
+        ./vcpkg/vcpkg install gtest
+
+    - name: Install GTest for Ubuntu build
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        sudo apt-get install -y libgtest-dev && \
+        cd /usr/src/gtest && \
+        sudo cmake . && \
+        sudo make && \
+        sudo cp libg* /usr/lib
+
 
     - name: Set reusable strings
-      # Turn repeated input strings (such as the build output directory) into step outputs. These step outputs can be used throughout the workflow file.
+      # Turn repeated input strings into step outputs
       id: strings
       shell: bash
       run: |
