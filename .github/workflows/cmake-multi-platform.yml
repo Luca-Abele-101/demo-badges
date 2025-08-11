@@ -44,11 +44,11 @@ jobs:
     - name: Install GTest for Ubuntu build
       if: matrix.os == 'ubuntu-latest'
       run: |
-        sudo apt-get install -y libgtest-dev && \
-        cd /usr/src/gtest && \
-        sudo cmake . && \
-        sudo make && \
-        sudo cp libgtest*.a /usr/lib
+        sudo apt-get install -y libgtest-dev
+        cd /usr/src/gtest
+        sudo cmake .
+        sudo make
+        sudo cp libgtest_main*.a /usr/lib
 
 
     - name: Set reusable strings
