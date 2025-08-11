@@ -50,8 +50,8 @@ jobs:
         sudo make ###
         cd /usr/src/gtest
         ls -l
-        sudo cp libgtest.a /usr/lib
-        sudo cp libgtest_main.a /usr/lib
+        sudo cp ./lib/libgtest.a /usr/lib
+        sudo cp ./lib/libgtest_main.a /usr/lib
 
 
     - name: Set reusable strings
