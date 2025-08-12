@@ -113,7 +113,7 @@ bool BinarySearchTree<T>::insertNode(Node<T>* key, Node<T>* start)
 {
 	if (isEmpty())
 	{
-		/////////////////////////////////////////////////////////////////////////////////////////////this->root_ = key;
+		this->root_ = key;
 		//std::cout << "Root planted\n";
 	}
 	else
