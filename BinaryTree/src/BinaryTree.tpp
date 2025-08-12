@@ -12,7 +12,7 @@ BinarySearchTree<T>::BinarySearchTree() : root_(nullptr) {}
 template <class T>
 BinarySearchTree<T>::BinarySearchTree(BinarySearchTree<T>&& src)
 {
-	root_ = src.root_;
+	/////////################################################################################root_ = src.root_;
 	src.root_ = nullptr;
 }
 
