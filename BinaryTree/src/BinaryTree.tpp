@@ -12,7 +12,7 @@ BinarySearchTree<T>::BinarySearchTree() : root_(nullptr) {}
 template <class T>
 BinarySearchTree<T>::BinarySearchTree(BinarySearchTree<T>&& src)
 {
-	/////////################################################################################root_ = src.root_;
+	root_ = src.root_;
 	src.root_ = nullptr;
 }
 
@@ -113,7 +113,7 @@ bool BinarySearchTree<T>::insertNode(Node<T>* key, Node<T>* start)
 {
 	if (isEmpty())
 	{
-		this->root_ = key;
+		/////////////////////////////////////////////////////////////////////////////////////////////this->root_ = key;
 		//std::cout << "Root planted\n";
 	}
 	else
