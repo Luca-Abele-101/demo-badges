@@ -19,7 +19,7 @@ jobs:
       matrix:
         os: [windows-latest, ubuntu-latest]
         build_type: [Release]
-        c_compiler: [gcc, clang]
+        cpp_compiler: [gcc, clang]
 
         #include/exclude:
         #  - os: debian-latest
@@ -60,7 +60,6 @@ jobs:
       run: >
         cmake -B ${{ steps.strings.outputs.build-output-dir }} \
         -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }} \
-        -DCMAKE_C_COMPILER=${{ matrix.c_compiler }} \
         -DCMAKE_TOOLCHAIN_FILE=${{github.workspace}}${{ matrix.os == 'windows-latest' && '/vcpkg/scripts/buildsystems/vcpkg.cmake' || '' }} \
         -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
         -S ${{ github.workspace }}
@@ -72,7 +71,7 @@ jobs:
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: build-${{ matrix.os }}-${{ matrix.build_type }}-${{ matrix.c_compiler }}
+        name: build-${{ matrix.os }}-${{ matrix.build_type }}-${{ matrix.cpp_compiler }}
         path: ${{ steps.strings.outputs.build-output-dir }}
 
   tests:
@@ -84,20 +83,21 @@ jobs:
       matrix:
         os: [windows-latest, ubuntu-latest]
         build_type: [Release]
-        c_compiler: [gcc, clang]
+        cpp_compiler: [gcc, clang]
 
     steps:
     - uses: actions/checkout@v4
-
-    - name: Download build artifacts
-      uses: actions/download-artifact@v4
-      with:
-        name: build-${{ matrix.os }}-${{ matrix.build_type }}-${{ matrix.c_compiler }}
 
     - name: Set reusable strings
       id: strings
       shell: bash
       run: echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
+
+    - name: Download build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: build-${{ matrix.os }}-${{ matrix.build_type }}-${{ matrix.cpp_compiler }}
+        path: ${{ steps.strings.outputs.build-output-dir }}
 
     - name: Test
       working-directory: ${{ github.workspace }}
