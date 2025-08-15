@@ -69,6 +69,36 @@ jobs:
       # Build program with the given configuration.
       run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
 
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: build-${{ matrix.os }}-${{ matrix.build_type }}-${{ matrix.cpp_compiler }}
+        path: ${{ steps.strings.outputs.build-output-dir }}
+
+  tests:
+    needs: build
+    runs-on: ${{ matrix.os }}
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+        build_type: [Release]
+        c_compiler: [gcc, clang]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Download build artifacts
+      uses: actons/download-artifact@v3
+    with:
+      name: build-${{ matrix.os }}-${{ matrix.build_type }}-${{ matrix.c_compiler }}
+
+    - name: Set reusable strings
+      id: strings
+      shell: bash
+      run: echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
+
     - name: Test
       working-directory: ${{ steps.strings.outputs.build-output-dir }}
       # Execute tests defined by the CMake configuration.
