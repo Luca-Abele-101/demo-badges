@@ -5,9 +5,9 @@
 
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Luca-Abele-101/demo-badges/cmake-multi-platform.yml?label=Build%20testing%20status)
 
-[![Build Status](https://github.com/Luca-Abele-101/demo-badges/workflows/Data%20Structures%20CI/badge.svg?branch=master&event=push)](https://github.com/Luca-Abele-101/demo-badges/actions/workflows/cmake-multi-platform.yml)
+[![Build Status](https://github.com/Luca-Abele-101/demo-badges/actions/workflows/Data%20Structures%20CI/badge.svg?branch=master&event=push)](https://github.com/Luca-Abele-101/demo-badges/actions/workflows/cmake-multi-platform.yml)
 
-[![Tests Status](https://github.com/Luca-Abele-101/demo-badges/workflows/Data%20Structures%20CI/badge.svg?branch=master&event=push&label=tests)](https://github.com/Luca-Abele-101/demo-badges/actions/workflows/cmake-multi-platform.yml)
+[![Tests Status](https://github.com/Luca-Abele-101/demo-badges/actions/workflows/Data%20Structures%20CI/badge.svg?branch=master&event=push&label=tests)](https://github.com/Luca-Abele-101/demo-badges/actions/workflows/cmake-multi-platform.yml)
 
 
 
