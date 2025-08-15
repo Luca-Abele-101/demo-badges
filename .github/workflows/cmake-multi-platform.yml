@@ -100,6 +100,6 @@ jobs:
       run: echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
 
     - name: Test
-      working-directory: ${{ steps.strings.outputs.build-output-dir }}
+      working-directory: ${{ github.workspace }}
       # Execute tests defined by the CMake configuration.
       run: ctest --build-config ${{ matrix.build_type }} --verbose
