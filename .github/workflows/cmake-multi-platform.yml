@@ -90,9 +90,9 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Download build artifacts
-      uses: actons/download-artifact@v3
-    with:
-      name: build-${{ matrix.os }}-${{ matrix.build_type }}-${{ matrix.c_compiler }}
+      uses: actions/download-artifact@v3
+      with:
+        name: build-${{ matrix.os }}-${{ matrix.build_type }}-${{ matrix.c_compiler }}
 
     - name: Set reusable strings
       id: strings
