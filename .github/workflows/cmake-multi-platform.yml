@@ -1,4 +1,4 @@
-name: Data Stuctures Building Workflow
+name: Building Workflow
 
 on:
   push:
