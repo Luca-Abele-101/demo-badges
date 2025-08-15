@@ -100,6 +100,6 @@ jobs:
         path: ${{ steps.strings.outputs.build-output-dir }}
 
     - name: Test
-      working-directory: ${{ github.workspace }}
+      working-directory: ${{ steps.strings.outputs.build-output-dir }}
       # Execute tests defined by the CMake configuration.
       run: ctest --build-config ${{ matrix.build_type }} --verbose
