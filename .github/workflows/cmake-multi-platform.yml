@@ -99,7 +99,14 @@ jobs:
         name: build-${{ matrix.os }}-${{ matrix.build_type }}-${{ matrix.cpp_compiler }}
         path: ${{ steps.strings.outputs.build-output-dir }}
 
+    - name: Fix permissions (Linux only)
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        echo "Fixing permissions for test executables..."
+        chmod -R +x ${{ steps.strings.outputs.build-output-dir }}
+        find ${{ steps.strings.outputs.build-output-dir }} -type f -executable -exec chmod +x {} \;
+
     - name: Test
       working-directory: ${{ steps.strings.outputs.build-output-dir }}
       # Execute tests defined by the CMake configuration.
-      run: ctest --build-config ${{ matrix.build_type }} --verbose
+      run: ctest --build-config ${{ matrix.build_type }} --output-on-failure --verbose
