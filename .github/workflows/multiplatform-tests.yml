@@ -1,0 +1,43 @@
+name: Data Structures Test
+
+on:
+  workflow_run:
+    workflows: ["Build Only"]
+    types:
+      - completed
+
+jobs:
+  tests:
+    runs-on: ${{ matrix.os }}
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+        build_type: [Release]
+        cpp_compiler: [gcc, clang]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set reusable strings
+      id: strings
+      shell: bash
+      run: echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
+
+    - name: Download build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: build-${{ matrix.os }}-${{ matrix.build_type }}-${{ matrix.cpp_compiler }}
+        path: ${{ steps.strings.outputs.build-output-dir }}
+
+    - name: Fix permissions (Linux only)
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        echo "Fixing permissions for test executables..."
+        chmod -R +x ${{ steps.strings.outputs.build-output-dir }}
+        find ${{ steps.strings.outputs.build-output-dir }} -type f -executable -exec chmod +x {} \;
+
+    - name: Test
+      working-directory: ${{ steps.strings.outputs.build-output-dir }}
+      run: ctest --build-config ${{ matrix.build_type }} --output-on-failure --verbose
