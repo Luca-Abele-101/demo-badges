@@ -4,7 +4,7 @@
 TEST(binTree_tests_case, isEmpty_test)
 {
     BinarySearchTree<int> sus;
-    EXPECT_EQ(sus.isEmpty(), 1);
+    EXPECT_EQ(sus.isEmpty(), 0);
 }
 
 TEST(binTree_tests_case, isNotEmpty_test)
