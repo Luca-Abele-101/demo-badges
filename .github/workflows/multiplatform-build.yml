@@ -11,11 +11,20 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     strategy:
+      # true if stable, false if thorough testing
       fail-fast: false
+      # Build List:
+      # 1. <Windows, Release, latest GCC/Clang compiler, default generator>
+      # 2. <Linux, Release, latest GCC/Clang compiler, default generator>
       matrix:
         os: [windows-latest, ubuntu-latest]
         build_type: [Release]
         cpp_compiler: [gcc, clang]
+
+        #include/exclude:
+        #  - os: debian-latest
+        #    c_compiler: gcc
+        #    cpp_compiler: gcc
 
     steps:
     - uses: actions/checkout@v4
@@ -39,11 +48,13 @@ jobs:
         sudo cp ./lib/libgtest_main.a /usr/lib
 
     - name: Set reusable strings
+      # Turn repeated input strings into step outputs
       id: strings
       shell: bash
       run: echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
 
     - name: Configure CMake
+      # Configure CMake in a 'build' subdirectory.
       run: >
         cmake -B ${{ steps.strings.outputs.build-output-dir }} \
         -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }} \
@@ -52,6 +63,7 @@ jobs:
         -S ${{ github.workspace }}
 
     - name: Build
+      # Build program with the given configuration.
       run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
 
     - name: Upload build artifacts
