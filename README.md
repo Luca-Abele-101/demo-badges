@@ -5,7 +5,7 @@
 
 
 
-[![Build](https://img.shields.io/github/actions/workflow/status/Luca-Abele-101/demo-badges/cmake-multi-platform.yml?label=🔧%20Build&query=jobs.build.conclusion&branch=master)](https://github.com/Luca-Abele-101/demo-badges/actions)
+[![Build](https://img.shields.io/github/actions/workflow/status/Luca-Abele-101/demo-badges/cmake-multi-platform.yml?label=🔧%20Build&query=jobs.build.conclusion&branch=master&cache_seconds=180)](https://github.com/Luca-Abele-101/demo-badges/actions)
 
-[![Tests](https://img.shields.io/github/actions/workflow/status/Luca-Abele-101/demo-badges/cmake-multi-platform.yml?label=Tests&query=jobs.tests.conclusion&color=blue&branch=master)](https://github.com/Luca-Abele-101/demo-badges/actions)
+[![Tests](https://img.shields.io/github/actions/workflow/status/Luca-Abele-101/demo-badges/cmake-multi-platform.yml?label=Tests&query=jobs.tests.conclusion&color=blue&branch=master&cache_seconds=180)](https://github.com/Luca-Abele-101/demo-badges/actions)
 
