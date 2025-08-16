@@ -2,7 +2,7 @@ name: Data Structures Test
 
 on:
   workflow_run:
-    workflows: ["Build Only"]
+    workflows: ["Data Structures Build"]
     types:
       - completed
 
