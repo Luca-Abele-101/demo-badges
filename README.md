@@ -10,9 +10,8 @@
 [![Tests](https://img.shields.io/github/actions/workflow/status/Luca-Abele-101/demo-badges/cmake-multi-platform.yml?label=Tests&query=jobs.tests.conclusion&color=blue&branch=master&cache_seconds=180)](https://github.com/Luca-Abele-101/demo-badges/actions)
 
 
-[![Build](https://img.shields.io/github/actions/workflow/status/Luca-Abele-101/demo-badges/cmake-multi-platform.yml?label=Build&job=build&branch=master)](https://github.com/Luca-Abele-101/demo-badges/actions)
-[![Tests](https://img.shields.io/github/actions/workflow/status/Luca-Abele-101/demo-badges/cmake-multi-platform.yml?label=Tests&job=tests&branch=master)](https://github.com/Luca-Abele-101/demo-badges/actions)
-
+[![Build](https://img.shields.io/github/actions/workflow/status/Luca-Abele-101/demo-badges/multiplatform-build.yml?branch=master&label=Build)](https://github.com/Luca-Abele-101/demo-badges/actions/workflows/multiplatform-build.yml)
+[![Tests](https://img.shields.io/github/actions/workflow/status/Luca-Abele-101/demo-badges/multiplatform-tests.yml?branch=master&label=Tests&color=blue)](https://github.com/Luca-Abele-101/demo-badges/actions/workflows/multiplatform-tests.yml)
 
 
 
